@@ -1,5 +1,7 @@
 package verify
 
+import "fmt"
+
 // FailureMessage encapsulates a failure message
 // that can by emitted using objects compatible
 // with the testing.TB interface.
@@ -83,11 +85,9 @@ func (msg FailureMessage) Prefix(s string) FailureMessage {
 	return FailureMessage(s) + msg
 }
 
-// Err returns the failure message as an error type, or nil if the message is empty.
-func (msg FailureMessage) Err() *AssertionError {
+func (msg FailureMessage) AsError() error {
 	if msg == "" {
 		return nil
 	}
-
-	return &AssertionError{Message: msg}
+	return fmt.Errorf(string(msg))
 }
