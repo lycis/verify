@@ -1,4 +1,4 @@
-module github.com/fluentassert/verify
+module github.com/lycis/verify
 
 go 1.18
 
